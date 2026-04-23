@@ -406,9 +406,9 @@
 
 <div class="container">
   <div class="stats-row">
-    <div class="stat-box"><div class="val" id="stat-total">15</div><div class="lbl">Questões</div></div>
-    <div class="stat-box"><div class="val" id="stat-mc">10</div><div class="lbl">Múltipla Escolha</div></div>
-    <div class="stat-box"><div class="val" id="stat-open">5</div><div class="lbl">Questões Abertas</div></div>
+    <div class="stat-box"><div class="val" id="stat-total">45</div><div class="lbl">Questões</div></div>
+    <div class="stat-box"><div class="val" id="stat-mc">30</div><div class="lbl">Múltipla Escolha</div></div>
+    <div class="stat-box"><div class="val" id="stat-open">15</div><div class="lbl">Questões Abertas</div></div>
     <div class="stat-box"><div class="val" id="stat-answered">0</div><div class="lbl">Respondidas</div></div>
   </div>
 
@@ -551,6 +551,237 @@ const questions = [
     correct: 1,
     explanation: 'A cadeia típica é: existe uma Ameaça que identifica uma Vulnerabilidade, realiza um Ataque e obtém a Exploração (aproveitamento da falha). Risco é a probabilidade e impacto combinados desse processo.'
   },
+  // ── LGPD ─────────────────────────────────────────────────────
+  {
+    type: 'mc',
+    text: 'De acordo com a LGPD, o que caracteriza um dado pessoal?',
+    options: [
+      'Informação de empresa',
+      'Informação de pessoa identificada ou identificável',
+      'Dados financeiros apenas',
+      'Dados públicos somente'
+    ],
+    correct: 1,
+    explanation: 'Dado pessoal, segundo a LGPD (Lei 13.709/2018), é qualquer informação relacionada a pessoa natural identificada ou identificável, como nome, CPF, endereço, e-mail, entre outros.'
+  },
+  {
+    type: 'mc',
+    text: 'Qual é um exemplo de dado pessoal sensível segundo a LGPD?',
+    options: [
+      'Nome',
+      'Endereço',
+      'Religião',
+      'E-mail'
+    ],
+    correct: 2,
+    explanation: 'Dados sensíveis são uma categoria especial que exige proteção reforçada: origem racial/étnica, convicção religiosa, opinião política, saúde, vida sexual, dado genético ou biométrico. Religião se enquadra nessa categoria.'
+  },
+  {
+    type: 'mc',
+    text: 'O termo "tratamento de dados pessoais" na LGPD refere-se a:',
+    options: [
+      'Apenas armazenamento de dados',
+      'Qualquer operação realizada com dados pessoais',
+      'Apenas exclusão de dados',
+      'Apenas compartilhamento de dados'
+    ],
+    correct: 1,
+    explanation: 'Tratamento abrange toda operação realizada com dados pessoais: coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação ou controle da informação, modificação, comunicação, transferência, difusão ou extração.'
+  },
+  {
+    type: 'mc',
+    text: 'Qual princípio da LGPD limita o uso de dados ao mínimo necessário para a finalidade pretendida?',
+    options: [
+      'Transparência',
+      'Necessidade',
+      'Concorrência',
+      'Marketing'
+    ],
+    correct: 1,
+    explanation: 'O princípio da Necessidade determina que o tratamento deve ser limitado ao mínimo necessário para a realização de suas finalidades, com abrangência dos dados pertinentes, proporcionais e não excessivos em relação às finalidades do tratamento.'
+  },
+  {
+    type: 'mc',
+    text: 'O tratamento de dados pessoais pode ocorrer quando:',
+    options: [
+      'Sempre que a empresa desejar',
+      'Nunca sem autorização judicial',
+      'Há base legal prevista na LGPD ou contrato',
+      'Apenas mediante autorização verbal do titular'
+    ],
+    correct: 2,
+    explanation: 'A LGPD exige uma das 10 bases legais para que o tratamento seja lícito, como: consentimento, cumprimento de obrigação legal, execução de contrato, legítimo interesse, proteção da vida, entre outras.'
+  },
+  {
+    type: 'mc',
+    text: 'Segundo a LGPD, o tratamento de dados pessoais de crianças:',
+    options: [
+      'É de livre uso pelas empresas',
+      'Requer consentimento específico dos pais ou responsáveis legais',
+      'Pode ser comercializado normalmente',
+      'Não possui regras específicas'
+    ],
+    correct: 1,
+    explanation: 'O tratamento de dados de crianças deve ser realizado no seu melhor interesse e exige consentimento específico e em destaque dado por pelo menos um dos pais ou pelo responsável legal.'
+  },
+  {
+    type: 'mc',
+    text: 'Quem é o titular dos dados na LGPD?',
+    options: [
+      'A empresa que coleta os dados',
+      'O governo',
+      'A pessoa natural a quem os dados se referem',
+      'O sistema de TI que armazena os dados'
+    ],
+    correct: 2,
+    explanation: 'Titular é a pessoa natural a quem se referem os dados pessoais que são objeto de tratamento. O titular possui direitos como acesso, correção, portabilidade e exclusão dos seus dados.'
+  },
+  {
+    type: 'mc',
+    text: 'Após o término do tratamento, os dados pessoais devem ser:',
+    options: [
+      'Guardados indefinidamente pela empresa',
+      'Eliminados, salvo exceções previstas em lei',
+      'Vendidos para terceiros',
+      'Publicados em bases abertas'
+    ],
+    correct: 1,
+    explanation: 'Ao término do tratamento, os dados devem ser eliminados, salvo nas hipóteses de cumprimento de obrigação legal, estudo por órgão de pesquisa, transferência a terceiro (com a LGPD assegurada) ou uso exclusivo pelo controlador (desde que anonimizados).'
+  },
+  {
+    type: 'mc',
+    text: 'Quem são os responsáveis pelo tratamento de dados na LGPD?',
+    options: [
+      'Apenas o usuário final',
+      'Apenas o governo',
+      'O controlador e o operador',
+      'Ninguém é responsabilizado'
+    ],
+    correct: 2,
+    explanation: 'Controlador é quem toma as decisões sobre o tratamento dos dados; Operador é quem realiza o tratamento em nome do controlador. Ambos têm responsabilidades distintas e podem ser responsabilizados por violações à LGPD.'
+  },
+  // ── POLÍTICA DE PRIVACIDADE ───────────────────────────────────
+  {
+    type: 'mc',
+    text: 'A política de privacidade é definida como:',
+    options: [
+      'Um contrato de venda de dados',
+      'Um documento formal sobre coleta e uso de dados pessoais',
+      'Um sistema de segurança técnica',
+      'Um banco de dados de clientes'
+    ],
+    correct: 1,
+    explanation: 'A política de privacidade é um documento formal que informa aos titulares como seus dados pessoais são coletados, utilizados, armazenados e protegidos pela organização, promovendo transparência e confiança.'
+  },
+  {
+    type: 'mc',
+    text: 'A política de privacidade tem como principal objetivo:',
+    options: [
+      'Aumentar as vendas da empresa',
+      'Informar como os dados pessoais são tratados',
+      'Criar novos produtos digitais',
+      'Reduzir custos operacionais'
+    ],
+    correct: 1,
+    explanation: 'O objetivo central da política de privacidade é informar de forma clara e transparente ao titular como seus dados serão coletados, utilizados, compartilhados e protegidos, garantindo o exercício dos seus direitos.'
+  },
+  {
+    type: 'mc',
+    text: 'A proteção de dados pessoais envolve:',
+    options: [
+      'Apenas sistemas digitais e tecnológicos',
+      'Apenas pessoas e processos humanos',
+      'Meios tecnológicos e não tecnológicos',
+      'Apenas contratos jurídicos'
+    ],
+    correct: 2,
+    explanation: 'A proteção de dados envolve uma abordagem holística: controles técnicos (criptografia, firewall, controle de acesso) e não técnicos (treinamento, políticas internas, procedimentos físicos de segurança).'
+  },
+  {
+    type: 'mc',
+    text: 'Uma boa política de privacidade deve ser:',
+    options: [
+      'Informal e verbal',
+      'Clara, concisa e acessível a todos os interessados',
+      'Secreta e restrita à equipe de TI',
+      'Dispensável se houver um contrato'
+    ],
+    correct: 1,
+    explanation: 'Uma política de privacidade eficaz deve ser clara, objetiva, redigida em linguagem acessível e disponível a todas as partes interessadas — titulares, colaboradores e parceiros.'
+  },
+  {
+    type: 'mc',
+    text: 'A política de privacidade deve ser aprovada por:',
+    options: [
+      'Apenas pelos clientes da empresa',
+      'Pelos funcionários em votação',
+      'Pela alta direção da organização',
+      'Exclusivamente pelo setor de TI'
+    ],
+    correct: 2,
+    explanation: 'A aprovação pela alta direção é fundamental para conferir legitimidade, respaldo institucional e garantir que a política seja efetivamente aplicada em toda a organização.'
+  },
+  // ── POLÍTICA DE SEGURANÇA DA INFORMAÇÃO ──────────────────────
+  {
+    type: 'mc',
+    text: 'A política de segurança da informação pode ser definida como:',
+    options: [
+      'Um software de proteção contra vírus',
+      'Um conjunto de princípios e diretrizes de segurança da informação',
+      'Um banco de dados criptografado',
+      'Um programa antivírus corporativo'
+    ],
+    correct: 1,
+    explanation: 'A política de segurança da informação é um documento formal que estabelece princípios, diretrizes, responsabilidades e regras para proteger os ativos de informação da organização.'
+  },
+  {
+    type: 'mc',
+    text: 'Quem deve seguir a política de segurança da informação de uma organização?',
+    options: [
+      'Apenas a equipe de TI',
+      'Apenas os gerentes e diretores',
+      'Todos os usuários internos e externos',
+      'Apenas os clientes da empresa'
+    ],
+    correct: 2,
+    explanation: 'A política de segurança deve ser seguida por todos que utilizam ou têm acesso aos recursos de informação da organização: funcionários, prestadores de serviço, parceiros e, quando aplicável, clientes.'
+  },
+  {
+    type: 'mc',
+    text: 'Qual dos itens NÃO é um objetivo da segurança da informação?',
+    options: [
+      'Confidencialidade',
+      'Integridade',
+      'Disponibilidade',
+      'Publicidade irrestrita'
+    ],
+    correct: 3,
+    explanation: 'Publicidade irrestrita não é um objetivo — é o oposto da confidencialidade. Os objetivos clássicos (tríade CID) são Confidencialidade, Integridade e Disponibilidade.'
+  },
+  {
+    type: 'mc',
+    text: 'A fase de definição da política de segurança da informação inclui:',
+    options: [
+      'Apenas a implementação dos controles técnicos',
+      'Planejamento, análise de riscos e definição de objetivos',
+      'Apenas a realização de auditorias',
+      'Apenas programas de treinamento'
+    ],
+    correct: 1,
+    explanation: 'A fase de definição engloba: identificar o escopo, levantar requisitos legais e de negócio, analisar riscos e definir os objetivos e responsabilidades da política.'
+  },
+  {
+    type: 'mc',
+    text: 'Um exemplo de controle físico de segurança da informação é:',
+    options: [
+      'Firewall de rede',
+      'Restrição de acesso físico a áreas críticas',
+      'Criptografia de dados',
+      'Software antivírus'
+    ],
+    correct: 1,
+    explanation: 'Controles físicos protegem o ambiente físico onde as informações são processadas e armazenadas. Exemplos: travas, câmeras, catracas, salas-cofre e restrição de entrada a data centers.'
+  },
   // ── QUESTÕES ABERTAS ─────────────────────────────────────────
   {
     type: 'open',
@@ -589,6 +820,87 @@ const questions = [
 2. Lei 12.737/2012 — Lei de Crimes Cibernéticos (Lei Carolina Dieckmann): tipifica crimes como invasão de dispositivo informático, interrupção de serviço e falsificação de dados.
 3. Lei 12.965/2014 — Marco Civil da Internet: estabelece princípios, direitos e deveres no uso da internet (neutralidade de rede, privacidade, liberdade de expressão).
 4. Lei 13.709/2018 — LGPD: regula o tratamento de dados pessoais por empresas e órgãos públicos, inspirada no GDPR europeu.`
+  },
+  // ── QUESTÕES ABERTAS — LGPD ──────────────────────────────────
+  {
+    type: 'open',
+    text: 'Cite e explique pelo menos três princípios da LGPD.',
+    gabarito: `1. Necessidade — o tratamento deve ser limitado ao mínimo necessário para atingir a finalidade pretendida.
+2. Segurança — obriga a adoção de medidas técnicas e administrativas aptas a proteger os dados de acessos não autorizados e situações acidentais ou ilícitas.
+3. Transparência — garante ao titular informações claras, precisas e facilmente acessíveis sobre o tratamento e os respectivos agentes.
+4. Finalidade — o tratamento deve ser realizado para propósitos legítimos, específicos, explícitos e informados ao titular.
+5. Adequação — compatibilidade do tratamento com as finalidades informadas ao titular.`
+  },
+  {
+    type: 'open',
+    text: 'Explique o que é tratamento de dados pessoais segundo a LGPD e dê dois exemplos práticos.',
+    gabarito: `Tratamento é toda operação realizada com dados pessoais: coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação, controle, modificação, comunicação, transferência, difusão ou extração.
+Exemplos:
+1. Uma loja virtual que coleta nome, e-mail e endereço de entrega do cliente para processar um pedido — isso é tratamento (coleta + uso + armazenamento).
+2. Um hospital que arquiva prontuários médicos com dados de saúde dos pacientes — tratamento de dados sensíveis, sujeito a bases legais específicas.`
+  },
+  {
+    type: 'open',
+    text: 'Diferencie dados pessoais de dados pessoais sensíveis, apresentando exemplos de cada categoria.',
+    gabarito: `Dados pessoais: qualquer informação que identifique ou torne identificável uma pessoa natural. Exemplos: nome, CPF, RG, endereço, e-mail, número de telefone, IP do dispositivo.
+Dados pessoais sensíveis: categoria especial que recebe proteção reforçada por revelar aspectos íntimos ou discriminatórios. Exemplos: origem racial ou étnica, convicção religiosa, opinião política, dado referente à saúde ou vida sexual, dado genético ou biométrico.
+Diferença prática: dados sensíveis exigem consentimento específico e destacado, ou outra base legal reforçada, e seu tratamento inadequado pode gerar discriminação ou danos graves ao titular.`
+  },
+  {
+    type: 'open',
+    text: 'Cite e explique três direitos do titular dos dados previstos na LGPD.',
+    gabarito: `1. Acesso — o titular pode solicitar ao controlador a confirmação de que seus dados são tratados e obter cópia deles.
+2. Correção — direito de solicitar a atualização ou retificação de dados incompletos, inexatos ou desatualizados.
+3. Eliminação — direito de pedir a exclusão dos dados tratados com base no consentimento, quando esse for revogado ou quando o tratamento for desnecessário.
+4. Portabilidade — direito de solicitar a transferência dos dados a outro fornecedor de serviço.
+5. Revogação do consentimento — o titular pode retirar o consentimento a qualquer momento, de forma gratuita e facilitada.`
+  },
+  {
+    type: 'open',
+    text: 'Como deve ser realizado o tratamento de dados de crianças e adolescentes segundo a LGPD? Justifique.',
+    gabarito: `O tratamento deve atender ao melhor interesse da criança e exige consentimento específico e em destaque de pelo menos um dos pais ou responsável legal.
+Justificativa: crianças e adolescentes são considerados vulneráveis e incapazes de compreender plenamente as implicações do tratamento de seus dados, por isso a lei exige proteção reforçada. Além disso, é vedada a coleta de dados além do estritamente necessário para a participação do menor na atividade, e o controlador não pode condicionar a participação a fornecimento de dados além do mínimo necessário.`
+  },
+  // ── QUESTÕES ABERTAS — POLÍTICA DE PRIVACIDADE ───────────────
+  {
+    type: 'open',
+    text: 'Explique o que é uma política de privacidade e qual sua importância para as organizações.',
+    gabarito: `A política de privacidade é um documento formal que descreve como a organização coleta, utiliza, armazena, compartilha e protege os dados pessoais dos titulares (clientes, colaboradores, parceiros).
+Importância:
+• Conformidade legal — atende às exigências da LGPD e outras regulamentações.
+• Transparência — informa os titulares sobre o tratamento, exercendo o princípio da transparência.
+• Confiança — aumenta a credibilidade da organização perante clientes e parceiros.
+• Governança — orienta internamente as equipes sobre como tratar dados de forma adequada.`
+  },
+  {
+    type: 'open',
+    text: 'Cite ações importantes para implementar uma política de privacidade dentro de uma organização.',
+    gabarito: `1. Mapeamento de dados (Data Mapping) — identificar quais dados são coletados, onde são armazenados e como fluem.
+2. Designação de DPO (Encarregado de Proteção de Dados) — responsável por ser o canal entre a organização, titulares e a ANPD.
+3. Treinamento e conscientização — capacitar colaboradores sobre boas práticas de privacidade.
+4. Revisão de contratos — incluir cláusulas de proteção de dados com operadores e parceiros.
+5. Auditorias periódicas — verificar a conformidade da política com a legislação vigente e os processos internos.
+6. Alinhamento com TI — implementar controles técnicos (criptografia, controle de acesso, anonimização) que suportem a política.`
+  },
+  // ── QUESTÕES ABERTAS — POLÍTICA DE SEGURANÇA DA INFORMAÇÃO ───
+  {
+    type: 'open',
+    text: 'Explique o que é uma política de segurança da informação e sua importância para as organizações.',
+    gabarito: `É um conjunto formal de diretrizes, princípios, regras e responsabilidades que orientam a proteção dos ativos de informação de uma organização contra ameaças internas e externas.
+Importância:
+• Define claramente as responsabilidades de cada colaborador quanto à segurança.
+• Reduz riscos ao estabelecer controles preventivos e corretivos.
+• Garante conformidade com leis e regulamentações (LGPD, ISO 27001, etc.).
+• Protege a imagem e a continuidade do negócio diante de incidentes.`
+  },
+  {
+    type: 'open',
+    text: 'Descreva as etapas principais para criação de uma política de segurança da informação.',
+    gabarito: `1. Definição — identificar escopo, objetivos, análise de riscos e requisitos legais e de negócio.
+2. Construção — redigir os documentos com regras, responsabilidades, procedimentos e controles detalhados.
+3. Aprovação — validar com a alta gestão para conferir legitimidade e respaldo institucional.
+4. Divulgação — comunicar a todos os colaboradores e partes interessadas; sem divulgação a política não é eficaz.
+Ciclo contínuo: após a divulgação, a política deve ser monitorada, auditada e atualizada periodicamente para acompanhar mudanças no negócio e no cenário de ameaças.`
   }
 ];
 
@@ -640,7 +952,7 @@ function buildQuiz() {
     });
   }
 
-  renderSection(mc, '01 — Múltipla Escolha', 0);
+  renderSection(mc, '01 — Múltipla Escolha (Fundamentos + LGPD + Privacidade + Pol. Segurança)', 0);
   renderSection(open, '02 — Questões Abertas', mc.length);
 }
 
