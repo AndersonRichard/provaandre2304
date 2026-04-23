@@ -20,9 +20,7 @@
     --wrong: #ef4444;
     --warn: #f59e0b;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -32,15 +30,13 @@
     position: relative;
     overflow-x: hidden;
   }
-
   body::before {
     content: '';
     position: fixed;
     top: -200px; left: -200px;
     width: 600px; height: 600px;
     background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
   body::after {
     content: '';
@@ -48,10 +44,8 @@
     bottom: -100px; right: -100px;
     width: 500px; height: 500px;
     background: radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
-
   header {
     background: linear-gradient(135deg, #0d1626 0%, #111827 60%, #0f1e30 100%);
     border-bottom: 1px solid var(--border);
@@ -96,7 +90,6 @@
     margin-top: 10px;
     font-family: 'IBM Plex Mono', monospace;
   }
-
   .container {
     max-width: 820px;
     margin: 0 auto;
@@ -104,8 +97,72 @@
     position: relative;
     z-index: 1;
   }
-
-  /* Progress bar */
+  /* Stats */
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 20px;
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+  }
+  .stat-box .val {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-box .lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 5px;
+  }
+  /* Shuffle bar */
+  .shuffle-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .shuffle-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .shuffle-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .shuffle-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .shuffle-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.07); }
+  .shuffle-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  /* Progress */
   .progress-bar-wrap {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -120,7 +177,7 @@
     transition: width 0.5s ease;
     border-radius: 4px;
   }
-
+  /* Section label */
   .section-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
@@ -138,8 +195,7 @@
     height: 1px;
     background: var(--border);
   }
-
-  /* Question card */
+  /* Card */
   .question-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -163,19 +219,15 @@
     line-height: 1;
   }
   .question-card.correct { border-color: var(--correct); background: rgba(16,185,129,0.05); }
-  .question-card.wrong { border-color: var(--wrong); background: rgba(239,68,68,0.05); }
-  .question-card.open-answered { border-color: var(--accent3); background: rgba(167,139,250,0.05); }
-
+  .question-card.wrong   { border-color: var(--wrong);   background: rgba(239,68,68,0.05);  }
   .q-type {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
+    color: var(--accent);
     margin-bottom: 10px;
   }
-  .q-type.multiple { color: var(--accent); }
-  .q-type.open { color: var(--accent3); }
-
   .q-text {
     font-size: 15px;
     font-weight: 500;
@@ -183,8 +235,7 @@
     margin-bottom: 20px;
     color: var(--text);
   }
-
-  /* Multiple choice */
+  /* Options */
   .options { display: flex; flex-direction: column; gap: 10px; }
   .option {
     display: flex;
@@ -215,46 +266,10 @@
     flex-shrink: 0;
     margin-top: 1px;
   }
-  .option.selected { border-color: var(--accent); background: rgba(0,229,255,0.08); }
+  .option.selected    { border-color: var(--accent);   background: rgba(0,229,255,0.08);              }
   .option.correct-opt { border-color: var(--correct) !important; background: rgba(16,185,129,0.1) !important; }
-  .option.wrong-opt { border-color: var(--wrong) !important; background: rgba(239,68,68,0.1) !important; }
-  .option:disabled { cursor: default; opacity: 0.8; }
-
-  /* Open question */
-  .open-textarea {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    padding: 14px 16px;
-    resize: vertical;
-    min-height: 110px;
-    transition: border-color 0.2s;
-    outline: none;
-  }
-  .open-textarea:focus { border-color: var(--accent3); }
-  .open-textarea::placeholder { color: var(--text-muted); }
-
-  .btn-check-open {
-    margin-top: 12px;
-    background: rgba(167,139,250,0.15);
-    border: 1px solid rgba(167,139,250,0.4);
-    color: var(--accent3);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 9px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-check-open:hover { background: rgba(167,139,250,0.25); }
-
+  .option.wrong-opt   { border-color: var(--wrong)   !important; background: rgba(239,68,68,0.1)  !important; }
+  .option:disabled    { cursor: default; opacity: 0.8; }
   /* Feedback */
   .feedback {
     margin-top: 16px;
@@ -266,21 +281,8 @@
     animation: fadeIn 0.3s ease;
   }
   .feedback.show { display: block; }
-  .feedback.correct-fb {
-    background: rgba(16,185,129,0.1);
-    border: 1px solid rgba(16,185,129,0.3);
-    color: #6ee7b7;
-  }
-  .feedback.wrong-fb {
-    background: rgba(239,68,68,0.1);
-    border: 1px solid rgba(239,68,68,0.3);
-    color: #fca5a5;
-  }
-  .feedback.open-fb {
-    background: rgba(167,139,250,0.1);
-    border: 1px solid rgba(167,139,250,0.3);
-    color: #c4b5fd;
-  }
+  .feedback.correct-fb { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7; }
+  .feedback.wrong-fb   { background: rgba(239,68,68,0.1);  border: 1px solid rgba(239,68,68,0.3);  color: #fca5a5; }
   .feedback strong {
     display: block;
     margin-bottom: 5px;
@@ -289,8 +291,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
   }
-
-  /* Score panel */
+  /* Score */
   #score-panel {
     display: none;
     background: var(--surface);
@@ -316,14 +317,8 @@
     background: rgba(0,229,255,0.05);
     color: var(--accent);
   }
-  #score-panel h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  #score-panel p { color: var(--text-muted); font-size: 14px; }
-
+  #score-panel h2 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  #score-panel p  { color: var(--text-muted); font-size: 14px; }
   .btn-submit {
     display: block;
     width: 100%;
@@ -342,9 +337,8 @@
     cursor: pointer;
     transition: opacity 0.2s, transform 0.1s;
   }
-  .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-submit:hover  { opacity: 0.9; transform: translateY(-1px); }
   .btn-submit:active { transform: translateY(0); }
-
   .btn-reset {
     display: inline-block;
     margin-top: 20px;
@@ -360,40 +354,7 @@
     transition: all 0.2s;
   }
   .btn-reset:hover { border-color: var(--text-muted); color: var(--text); }
-
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* Stats row */
-  .stats-row {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
-  }
-  .stat-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 20px;
-    flex: 1;
-    min-width: 130px;
-    text-align: center;
-  }
-  .stat-box .val {
-    font-family: 'Syne', sans-serif;
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .stat-box .lbl {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 5px;
-  }
 </style>
 </head>
 <body>
@@ -407,9 +368,21 @@
 <div class="container">
   <div class="stats-row">
     <div class="stat-box"><div class="val" id="stat-total">45</div><div class="lbl">Questões</div></div>
-    <div class="stat-box"><div class="val" id="stat-mc">30</div><div class="lbl">Múltipla Escolha</div></div>
-    <div class="stat-box"><div class="val" id="stat-open">15</div><div class="lbl">Questões Abertas</div></div>
     <div class="stat-box"><div class="val" id="stat-answered">0</div><div class="lbl">Respondidas</div></div>
+    <div class="stat-box"><div class="val" id="stat-correct">0</div><div class="lbl">Corretas</div></div>
+    <div class="stat-box"><div class="val" id="stat-wrong">0</div><div class="lbl">Erradas</div></div>
+  </div>
+
+  <div class="shuffle-bar">
+    <span class="shuffle-label">// embaralhar:</span>
+    <button class="shuffle-btn" id="btn-shuffle-q" onclick="toggleShuffle('q')" title="Embaralhar ordem das questões">
+      <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+      Questões
+    </button>
+    <button class="shuffle-btn" id="btn-shuffle-a" onclick="toggleShuffle('a')" title="Embaralhar ordem das alternativas">
+      <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+      Alternativas
+    </button>
   </div>
 
   <div class="progress-bar-wrap">
@@ -418,7 +391,7 @@
 
   <div id="questions-wrap"></div>
 
-  <button class="btn-submit" id="btn-submit" onclick="submitAll()">Finalizar e Ver Resultado</button>
+  <button class="btn-submit" onclick="submitAll()">Finalizar e Ver Resultado</button>
 
   <div id="score-panel">
     <div class="score-circle" id="score-circle">0%</div>
@@ -429,551 +402,481 @@
 </div>
 
 <script>
-const questions = [
-  // ── MÚLTIPLA ESCOLHA ──────────────────────────────────────────
+const allQuestions = [
+
+  // ── FUNDAMENTOS DE SEGURANÇA DA INFORMAÇÃO ───────────────────
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'Qual dos itens a seguir NÃO é considerado um elemento da Segurança da Informação?',
-    options: [
-      'Confidencialidade',
-      'Disponibilidade',
-      'Escalabilidade',
-      'Integridade'
-    ],
+    options: ['Confidencialidade','Disponibilidade','Escalabilidade','Integridade'],
     correct: 2,
     explanation: 'Escalabilidade é uma característica de sistemas/arquiteturas, não um elemento da segurança da informação. Os elementos clássicos são: Confidencialidade, Autenticidade, Integridade, Disponibilidade, Legalidade e Não-repúdio.'
   },
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'A propriedade que garante que somente pessoas autorizadas tenham acesso à informação é chamada de:',
-    options: [
-      'Integridade',
-      'Disponibilidade',
-      'Não-repúdio',
-      'Confidencialidade'
-    ],
+    options: ['Integridade','Disponibilidade','Não-repúdio','Confidencialidade'],
     correct: 3,
     explanation: 'Confidencialidade garante que a informação só é acessível a quem tem autorização, evitando divulgação não autorizada.'
   },
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'Qual lei brasileira ficou conhecida como "Lei Carolina Dieckmann" e trata de crimes cibernéticos?',
-    options: [
-      'Lei 12.965/2014 (Marco Civil da Internet)',
-      'Lei 12.737/2012 (Lei de Crimes Cibernéticos)',
-      'Lei 13.709/2018 (LGPD)',
-      'Lei 12.587/2011 (Lei de Acesso à Informação)'
-    ],
+    options: ['Lei 12.965/2014 (Marco Civil da Internet)','Lei 12.737/2012 (Lei de Crimes Cibernéticos)','Lei 13.709/2018 (LGPD)','Lei 12.527/2011 (Lei de Acesso à Informação)'],
     correct: 1,
     explanation: 'A Lei 12.737/2012 ficou conhecida como Lei Carolina Dieckmann pois foi motivada pelo caso de invasão ao computador da atriz. Ela tipifica crimes como invasão de dispositivo informático.'
   },
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'O Marco Civil da Internet no Brasil é regulamentado por qual legislação?',
-    options: [
-      'Lei 13.709/2018',
-      'Lei 12.737/2012',
-      'Lei 12.965/2014',
-      'Lei 12.527/2011'
-    ],
+    options: ['Lei 13.709/2018','Lei 12.737/2012','Lei 12.965/2014','Lei 12.527/2011'],
     correct: 2,
     explanation: 'A Lei 12.965/2014, conhecida como Marco Civil da Internet, estabelece princípios, garantias, direitos e deveres para o uso da internet no Brasil.'
   },
   {
-    type: 'mc',
-    text: 'Qual dos fatores a seguir está diretamente ligado ao aumento da necessidade de segurança da informação nas organizações?',
-    options: [
-      'Redução do uso de sistemas baseados em rede',
-      'Diminuição dos ataques cibernéticos globais',
-      'Impacto direto das falhas de segurança no negócio',
-      'Simplificação na administração de sistemas de computação'
-    ],
+    section: 'Fundamentos de Segurança da Informação',
+    text: 'Qual dos fatores está diretamente ligado ao aumento da necessidade de segurança da informação nas organizações?',
+    options: ['Redução do uso de sistemas baseados em rede','Diminuição dos ataques cibernéticos globais','Impacto direto das falhas de segurança no negócio','Simplificação na administração de sistemas'],
     correct: 2,
-    explanation: 'O impacto direto das falhas de segurança no negócio é uma das principais razões pelas quais a segurança da informação se tornou essencial, pois brechas podem gerar perdas financeiras, danos à reputação e responsabilidades legais.'
+    explanation: 'O impacto direto das falhas de segurança no negócio é uma das principais razões pelas quais a segurança da informação se tornou essencial: brechas podem gerar perdas financeiras, danos à reputação e responsabilidades legais.'
   },
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'Em segurança da informação, "vulnerabilidade" refere-se a:',
-    options: [
-      'Um ataque já consumado contra o sistema',
-      'A probabilidade de um evento adverso ocorrer',
-      'Uma fraqueza ou falha que pode ser explorada por uma ameaça',
-      'O agente externo que tenta comprometer o sistema'
-    ],
+    options: ['Um ataque já consumado contra o sistema','A probabilidade de um evento adverso ocorrer','Uma fraqueza ou falha que pode ser explorada por uma ameaça','O agente externo que tenta comprometer o sistema'],
     correct: 2,
     explanation: 'Vulnerabilidade é uma fraqueza ou falha (em hardware, software, processos ou pessoas) que pode ser explorada por uma ameaça para causar dano. Difere de ameaça (agente) e de risco (probabilidade × impacto).'
   },
   {
-    type: 'mc',
-    text: 'Qual etapa do ciclo de Políticas de Segurança é responsável por tornar o conteúdo acessível a todos os colaboradores?',
-    options: [
-      'Definição da política',
-      'Construção da política',
-      'Aprovação da política',
-      'Divulgação da política'
-    ],
+    section: 'Fundamentos de Segurança da Informação',
+    text: 'Qual etapa do ciclo de Políticas de Segurança torna o conteúdo acessível a todos os colaboradores?',
+    options: ['Definição da política','Construção da política','Aprovação da política','Divulgação da política'],
     correct: 3,
     explanation: 'A etapa de Divulgação garante que a política chegue a todos os stakeholders. Sem divulgação adequada, mesmo a melhor política torna-se ineficaz.'
   },
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'Desastres naturais são classificados, no contexto da Segurança da Informação, como:',
-    options: [
-      'Ameaça interna controlável',
-      'Fonte de ataque / ameaça',
-      'Vulnerabilidade de software',
-      'Política de segurança'
-    ],
+    options: ['Ameaça interna controlável','Fonte de ataque / ameaça','Vulnerabilidade de software','Política de segurança'],
     correct: 1,
     explanation: 'Desastres naturais (enchentes, incêndios, terremotos) são listados como fontes de ataque/ameaça que podem causar indisponibilidade ou perda de dados, sendo tratados em planos de continuidade de negócios.'
   },
   {
-    type: 'mc',
+    section: 'Fundamentos de Segurança da Informação',
     text: 'A propriedade de segurança que impede que um emissor negue ter enviado uma mensagem é chamada de:',
-    options: [
-      'Autenticidade',
-      'Integridade',
-      'Não-repúdio',
-      'Confidencialidade'
-    ],
+    options: ['Autenticidade','Integridade','Não-repúdio','Confidencialidade'],
     correct: 2,
     explanation: 'Não-repúdio (ou irretratabilidade) garante que uma parte não possa negar a autoria de uma ação ou transação, geralmente implementado com assinaturas digitais e logs de auditoria.'
   },
   {
-    type: 'mc',
-    text: 'Qual das alternativas representa CORRETAMENTE a sequência lógica de ataque?',
-    options: [
-      'Exploração → Vulnerabilidade → Ameaça → Ataque',
-      'Ameaça → Vulnerabilidade → Ataque → Exploração',
-      'Ataque → Risco → Ameaça → Vulnerabilidade',
-      'Risco → Alvo → Integridade → Disponibilidade'
-    ],
+    section: 'Fundamentos de Segurança da Informação',
+    text: 'Qual representa CORRETAMENTE a sequência lógica de um ataque?',
+    options: ['Exploração → Vulnerabilidade → Ameaça → Ataque','Ameaça → Vulnerabilidade → Ataque → Exploração','Ataque → Risco → Ameaça → Vulnerabilidade','Risco → Alvo → Integridade → Disponibilidade'],
     correct: 1,
-    explanation: 'A cadeia típica é: existe uma Ameaça que identifica uma Vulnerabilidade, realiza um Ataque e obtém a Exploração (aproveitamento da falha). Risco é a probabilidade e impacto combinados desse processo.'
+    explanation: 'A cadeia típica é: existe uma Ameaça que identifica uma Vulnerabilidade, realiza um Ataque e obtém a Exploração. Risco é a probabilidade e impacto combinados desse processo.'
   },
+  {
+    section: 'Fundamentos de Segurança da Informação',
+    text: 'Qual é a diferença entre "ameaça" e "vulnerabilidade" na segurança da informação?',
+    options: ['São sinônimos e podem ser usados de forma intercambiável','Ameaça é o agente/evento que pode causar dano; vulnerabilidade é a falha que pode ser explorada','Vulnerabilidade é o ataque em si; ameaça é o resultado do ataque','Ameaça é sempre interna; vulnerabilidade é sempre externa'],
+    correct: 1,
+    explanation: 'Ameaça é qualquer agente ou evento (hacker, vírus, desastre) com potencial de causar dano. Vulnerabilidade é a fraqueza ou falha (senha fraca, sistema desatualizado) que a ameaça pode explorar para concretizar o dano.'
+  },
+  {
+    section: 'Fundamentos de Segurança da Informação',
+    text: 'Cite a sequência correta das etapas do ciclo de uma política de segurança da informação:',
+    options: ['Divulgação → Definição → Construção → Aprovação','Definição → Construção → Aprovação → Divulgação','Aprovação → Definição → Divulgação → Construção','Construção → Aprovação → Definição → Divulgação'],
+    correct: 1,
+    explanation: 'O ciclo correto é: 1) Definição — escopo e objetivos; 2) Construção — redação das regras; 3) Aprovação — validação pela alta gestão; 4) Divulgação — comunicação a todos os envolvidos.'
+  },
+  {
+    section: 'Fundamentos de Segurança da Informação',
+    text: 'Por que o aumento de ambientes de rede ampliou a importância da segurança da informação?',
+    options: ['Reduziu o número de dispositivos a proteger','Ampliou a superfície de ataque, criando mais pontos de entrada para invasores','Simplificou o gerenciamento de senhas','Eliminou a necessidade de antivírus'],
+    correct: 1,
+    explanation: 'Mais dispositivos conectados significam mais pontos de entrada para invasores. Aplicações web podem sofrer SQL Injection; redes Wi-Fi abertas permitem sniffing; nuvens mal configuradas expõem dados — a interdependência propaga falhas rapidamente.'
+  },
+
   // ── LGPD ─────────────────────────────────────────────────────
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'De acordo com a LGPD, o que caracteriza um dado pessoal?',
-    options: [
-      'Informação de empresa',
-      'Informação de pessoa identificada ou identificável',
-      'Dados financeiros apenas',
-      'Dados públicos somente'
-    ],
+    options: ['Informação de empresa','Informação de pessoa identificada ou identificável','Dados financeiros apenas','Dados públicos somente'],
     correct: 1,
     explanation: 'Dado pessoal, segundo a LGPD (Lei 13.709/2018), é qualquer informação relacionada a pessoa natural identificada ou identificável, como nome, CPF, endereço, e-mail, entre outros.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'Qual é um exemplo de dado pessoal sensível segundo a LGPD?',
-    options: [
-      'Nome',
-      'Endereço',
-      'Religião',
-      'E-mail'
-    ],
+    options: ['Nome','Endereço','Religião','E-mail'],
     correct: 2,
-    explanation: 'Dados sensíveis são uma categoria especial que exige proteção reforçada: origem racial/étnica, convicção religiosa, opinião política, saúde, vida sexual, dado genético ou biométrico. Religião se enquadra nessa categoria.'
+    explanation: 'Dados sensíveis são categoria especial que exige proteção reforçada: origem racial/étnica, convicção religiosa, opinião política, saúde, vida sexual, dado genético ou biométrico. Religião se enquadra nessa categoria.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'O termo "tratamento de dados pessoais" na LGPD refere-se a:',
-    options: [
-      'Apenas armazenamento de dados',
-      'Qualquer operação realizada com dados pessoais',
-      'Apenas exclusão de dados',
-      'Apenas compartilhamento de dados'
-    ],
+    options: ['Apenas armazenamento de dados','Qualquer operação realizada com dados pessoais','Apenas exclusão de dados','Apenas compartilhamento de dados'],
     correct: 1,
-    explanation: 'Tratamento abrange toda operação realizada com dados pessoais: coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação ou controle da informação, modificação, comunicação, transferência, difusão ou extração.'
+    explanation: 'Tratamento abrange toda operação realizada com dados pessoais: coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação, modificação, comunicação, transferência, difusão ou extração.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'Qual princípio da LGPD limita o uso de dados ao mínimo necessário para a finalidade pretendida?',
-    options: [
-      'Transparência',
-      'Necessidade',
-      'Concorrência',
-      'Marketing'
-    ],
+    options: ['Transparência','Necessidade','Concorrência','Marketing'],
     correct: 1,
-    explanation: 'O princípio da Necessidade determina que o tratamento deve ser limitado ao mínimo necessário para a realização de suas finalidades, com abrangência dos dados pertinentes, proporcionais e não excessivos em relação às finalidades do tratamento.'
+    explanation: 'O princípio da Necessidade determina que o tratamento deve ser limitado ao mínimo necessário para a realização de suas finalidades, com dados pertinentes, proporcionais e não excessivos.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'O tratamento de dados pessoais pode ocorrer quando:',
-    options: [
-      'Sempre que a empresa desejar',
-      'Nunca sem autorização judicial',
-      'Há base legal prevista na LGPD ou contrato',
-      'Apenas mediante autorização verbal do titular'
-    ],
+    options: ['Sempre que a empresa desejar','Nunca sem autorização judicial','Há base legal prevista na LGPD ou contrato','Apenas mediante autorização verbal do titular'],
     correct: 2,
-    explanation: 'A LGPD exige uma das 10 bases legais para que o tratamento seja lícito, como: consentimento, cumprimento de obrigação legal, execução de contrato, legítimo interesse, proteção da vida, entre outras.'
+    explanation: 'A LGPD exige uma das 10 bases legais para que o tratamento seja lícito: consentimento, cumprimento de obrigação legal, execução de contrato, legítimo interesse, proteção da vida, entre outras.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'Segundo a LGPD, o tratamento de dados pessoais de crianças:',
-    options: [
-      'É de livre uso pelas empresas',
-      'Requer consentimento específico dos pais ou responsáveis legais',
-      'Pode ser comercializado normalmente',
-      'Não possui regras específicas'
-    ],
+    options: ['É de livre uso pelas empresas','Requer consentimento específico dos pais ou responsáveis legais','Pode ser comercializado normalmente','Não possui regras específicas'],
     correct: 1,
     explanation: 'O tratamento de dados de crianças deve ser realizado no seu melhor interesse e exige consentimento específico e em destaque dado por pelo menos um dos pais ou pelo responsável legal.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'Quem é o titular dos dados na LGPD?',
-    options: [
-      'A empresa que coleta os dados',
-      'O governo',
-      'A pessoa natural a quem os dados se referem',
-      'O sistema de TI que armazena os dados'
-    ],
+    options: ['A empresa que coleta os dados','O governo','A pessoa natural a quem os dados se referem','O sistema de TI que armazena os dados'],
     correct: 2,
-    explanation: 'Titular é a pessoa natural a quem se referem os dados pessoais que são objeto de tratamento. O titular possui direitos como acesso, correção, portabilidade e exclusão dos seus dados.'
+    explanation: 'Titular é a pessoa natural a quem se referem os dados pessoais objeto de tratamento. O titular possui direitos como acesso, correção, portabilidade e exclusão dos seus dados.'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'Após o término do tratamento, os dados pessoais devem ser:',
-    options: [
-      'Guardados indefinidamente pela empresa',
-      'Eliminados, salvo exceções previstas em lei',
-      'Vendidos para terceiros',
-      'Publicados em bases abertas'
-    ],
+    options: ['Guardados indefinidamente pela empresa','Eliminados, salvo exceções previstas em lei','Vendidos para terceiros','Publicados em bases abertas'],
     correct: 1,
-    explanation: 'Ao término do tratamento, os dados devem ser eliminados, salvo nas hipóteses de cumprimento de obrigação legal, estudo por órgão de pesquisa, transferência a terceiro (com a LGPD assegurada) ou uso exclusivo pelo controlador (desde que anonimizados).'
+    explanation: 'Ao término do tratamento, os dados devem ser eliminados, salvo nas hipóteses de cumprimento de obrigação legal, estudo por órgão de pesquisa, transferência a terceiro ou uso exclusivo pelo controlador (anonimizados).'
   },
   {
-    type: 'mc',
+    section: 'LGPD',
     text: 'Quem são os responsáveis pelo tratamento de dados na LGPD?',
-    options: [
-      'Apenas o usuário final',
-      'Apenas o governo',
-      'O controlador e o operador',
-      'Ninguém é responsabilizado'
-    ],
+    options: ['Apenas o usuário final','Apenas o governo','O controlador e o operador','Ninguém é responsabilizado'],
     correct: 2,
     explanation: 'Controlador é quem toma as decisões sobre o tratamento dos dados; Operador é quem realiza o tratamento em nome do controlador. Ambos têm responsabilidades distintas e podem ser responsabilizados por violações à LGPD.'
   },
+  {
+    section: 'LGPD',
+    text: 'Qual dos itens abaixo é um dado pessoal sensível conforme a LGPD?',
+    options: ['Número de telefone','Endereço residencial','Dado genético ou biométrico','Nome completo'],
+    correct: 2,
+    explanation: 'Dados genéticos e biométricos fazem parte da lista taxativa de dados sensíveis da LGPD, pois revelam características únicas e íntimas da pessoa, exigindo base legal reforçada para tratamento.'
+  },
+  {
+    section: 'LGPD',
+    text: 'O princípio da finalidade na LGPD determina que o tratamento deve:',
+    options: ['Ser realizado pelo menor número de funcionários possível','Ocorrer para propósitos legítimos, específicos e informados ao titular','Ser feito apenas por empresas públicas','Durar no máximo 12 meses'],
+    correct: 1,
+    explanation: 'Pelo princípio da Finalidade, o tratamento só pode ocorrer para propósitos legítimos, específicos, explícitos e previamente informados ao titular, sendo vedado o uso incompatível com essas finalidades.'
+  },
+  {
+    section: 'LGPD',
+    text: 'Qual direito do titular permite solicitar a correção de dados incompletos ou desatualizados?',
+    options: ['Portabilidade','Eliminação','Retificação','Oposição'],
+    correct: 2,
+    explanation: 'O direito de Retificação (ou correção) permite ao titular solicitar a atualização, complementação ou correção de seus dados pessoais que estejam incorretos, incompletos ou desatualizados.'
+  },
+  {
+    section: 'LGPD',
+    text: 'Qual órgão brasileiro é responsável por fiscalizar e aplicar a LGPD?',
+    options: ['Ministério da Justiça','ANPD — Autoridade Nacional de Proteção de Dados','Receita Federal','Tribunal de Contas da União'],
+    correct: 1,
+    explanation: 'A ANPD (Autoridade Nacional de Proteção de Dados) é o órgão regulador criado pela própria LGPD para fiscalizar o cumprimento da lei, aplicar sanções e editar normas complementares.'
+  },
+  {
+    section: 'LGPD',
+    text: 'A diferença prática entre dados pessoais e dados pessoais sensíveis é que:',
+    options: ['Dados pessoais não precisam de proteção','Dados sensíveis exigem proteção reforçada e base legal específica','Dados sensíveis são apenas os financeiros','Dados pessoais são sempre públicos'],
+    correct: 1,
+    explanation: 'Dados pessoais sensíveis exigem nível de proteção mais elevado pois, se expostos, podem gerar discriminação ou danos graves ao titular. Por isso, a LGPD requer bases legais específicas e consentimento destacado para tratá-los.'
+  },
+  {
+    section: 'LGPD',
+    text: 'Qual das alternativas representa corretamente o conceito de "anonimização" na LGPD?',
+    options: ['Excluir permanentemente os dados do banco','Criptografar os dados com senha','Tornar o dado não identificável por meios razoáveis','Transferir os dados para outro país'],
+    correct: 2,
+    explanation: 'Anonimização é o processo de desassociar o dado de seu titular de forma que não seja possível identificá-lo por meios razoáveis. Dados anonimizados deixam de ser considerados dados pessoais pela LGPD.'
+  },
+  {
+    section: 'LGPD',
+    text: 'O tratamento de dados de crianças deve atender principalmente ao:',
+    options: ['Interesse comercial da empresa','Melhor interesse da criança','Interesse do responsável legal','Interesse do governo'],
+    correct: 1,
+    explanation: 'A LGPD determina que o tratamento de dados de crianças e adolescentes deve ser realizado sempre no melhor interesse da criança, com consentimento dos pais ou responsáveis e coleta mínima de dados.'
+  },
+
   // ── POLÍTICA DE PRIVACIDADE ───────────────────────────────────
   {
-    type: 'mc',
+    section: 'Política de Privacidade',
     text: 'A política de privacidade é definida como:',
-    options: [
-      'Um contrato de venda de dados',
-      'Um documento formal sobre coleta e uso de dados pessoais',
-      'Um sistema de segurança técnica',
-      'Um banco de dados de clientes'
-    ],
+    options: ['Um contrato de venda de dados','Um documento formal sobre coleta e uso de dados pessoais','Um sistema de segurança técnica','Um banco de dados de clientes'],
     correct: 1,
     explanation: 'A política de privacidade é um documento formal que informa aos titulares como seus dados pessoais são coletados, utilizados, armazenados e protegidos pela organização, promovendo transparência e confiança.'
   },
   {
-    type: 'mc',
+    section: 'Política de Privacidade',
     text: 'A política de privacidade tem como principal objetivo:',
-    options: [
-      'Aumentar as vendas da empresa',
-      'Informar como os dados pessoais são tratados',
-      'Criar novos produtos digitais',
-      'Reduzir custos operacionais'
-    ],
+    options: ['Aumentar as vendas da empresa','Informar como os dados pessoais são tratados','Criar novos produtos digitais','Reduzir custos operacionais'],
     correct: 1,
     explanation: 'O objetivo central da política de privacidade é informar de forma clara e transparente ao titular como seus dados serão coletados, utilizados, compartilhados e protegidos, garantindo o exercício dos seus direitos.'
   },
   {
-    type: 'mc',
+    section: 'Política de Privacidade',
     text: 'A proteção de dados pessoais envolve:',
-    options: [
-      'Apenas sistemas digitais e tecnológicos',
-      'Apenas pessoas e processos humanos',
-      'Meios tecnológicos e não tecnológicos',
-      'Apenas contratos jurídicos'
-    ],
+    options: ['Apenas sistemas digitais e tecnológicos','Apenas pessoas e processos humanos','Meios tecnológicos e não tecnológicos','Apenas contratos jurídicos'],
     correct: 2,
     explanation: 'A proteção de dados envolve uma abordagem holística: controles técnicos (criptografia, firewall, controle de acesso) e não técnicos (treinamento, políticas internas, procedimentos físicos de segurança).'
   },
   {
-    type: 'mc',
+    section: 'Política de Privacidade',
     text: 'Uma boa política de privacidade deve ser:',
-    options: [
-      'Informal e verbal',
-      'Clara, concisa e acessível a todos os interessados',
-      'Secreta e restrita à equipe de TI',
-      'Dispensável se houver um contrato'
-    ],
+    options: ['Informal e verbal','Clara, concisa e acessível a todos os interessados','Secreta e restrita à equipe de TI','Dispensável se houver um contrato'],
     correct: 1,
     explanation: 'Uma política de privacidade eficaz deve ser clara, objetiva, redigida em linguagem acessível e disponível a todas as partes interessadas — titulares, colaboradores e parceiros.'
   },
   {
-    type: 'mc',
+    section: 'Política de Privacidade',
     text: 'A política de privacidade deve ser aprovada por:',
-    options: [
-      'Apenas pelos clientes da empresa',
-      'Pelos funcionários em votação',
-      'Pela alta direção da organização',
-      'Exclusivamente pelo setor de TI'
-    ],
+    options: ['Apenas pelos clientes da empresa','Pelos funcionários em votação','Pela alta direção da organização','Exclusivamente pelo setor de TI'],
     correct: 2,
     explanation: 'A aprovação pela alta direção é fundamental para conferir legitimidade, respaldo institucional e garantir que a política seja efetivamente aplicada em toda a organização.'
   },
+  {
+    section: 'Política de Privacidade',
+    text: 'Qual profissional é responsável por ser o canal entre a organização, os titulares e a ANPD?',
+    options: ['CISO — Chief Information Security Officer','DPO — Encarregado de Proteção de Dados','CTO — Chief Technology Officer','Auditor interno'],
+    correct: 1,
+    explanation: 'O DPO (Data Protection Officer), ou Encarregado de Proteção de Dados, é o responsável indicado pelo controlador para atuar como canal de comunicação entre a empresa, os titulares de dados e a ANPD.'
+  },
+  {
+    section: 'Política de Privacidade',
+    text: 'O princípio da transparência na política de privacidade significa:',
+    options: ['Ocultar informações sensíveis do público','Informar claramente ao titular como seus dados são tratados','Evitar comunicação com os usuários','Compartilhar dados sem controle'],
+    correct: 1,
+    explanation: 'Transparência implica que a organização deve informar de forma clara, precisa e acessível ao titular quais dados são coletados, com qual finalidade, como são usados e quais são seus direitos.'
+  },
+  {
+    section: 'Política de Privacidade',
+    text: 'Qual das alternativas é uma ação importante para implementar uma política de privacidade?',
+    options: ['Esconder as práticas de coleta de dados','Realizar mapeamento de dados (Data Mapping)','Eliminar todos os registros de dados dos clientes','Terceirizar toda a responsabilidade para fornecedores'],
+    correct: 1,
+    explanation: 'O Data Mapping (mapeamento de dados) é essencial para identificar quais dados são coletados, onde são armazenados, como circulam e quem tem acesso, sendo o ponto de partida para qualquer programa de privacidade.'
+  },
+  {
+    section: 'Política de Privacidade',
+    text: 'A política de privacidade contribui para:',
+    options: ['Reduzir a transparência com o consumidor','Aumentar a confiança do consumidor na organização','Diminuir a segurança dos dados','Evitar auditorias internas'],
+    correct: 1,
+    explanation: 'Uma política de privacidade bem elaborada e comunicada demonstra compromisso da organização com a proteção dos dados, fortalecendo a confiança dos consumidores e parceiros.'
+  },
+  {
+    section: 'Política de Privacidade',
+    text: 'Qual das opções NÃO é uma característica de uma boa política de privacidade?',
+    options: ['Ser formal e documentada','Ser auditável periodicamente','Ser secreta e de acesso restrito','Ser concisa e de linguagem acessível'],
+    correct: 2,
+    explanation: 'Uma boa política de privacidade deve ser pública, acessível e transparente. Ser secreta contraria diretamente o princípio da transparência exigido pela LGPD.'
+  },
+
   // ── POLÍTICA DE SEGURANÇA DA INFORMAÇÃO ──────────────────────
   {
-    type: 'mc',
+    section: 'Política de Segurança da Informação',
     text: 'A política de segurança da informação pode ser definida como:',
-    options: [
-      'Um software de proteção contra vírus',
-      'Um conjunto de princípios e diretrizes de segurança da informação',
-      'Um banco de dados criptografado',
-      'Um programa antivírus corporativo'
-    ],
+    options: ['Um software de proteção contra vírus','Um conjunto de princípios e diretrizes de segurança da informação','Um banco de dados criptografado','Um programa antivírus corporativo'],
     correct: 1,
     explanation: 'A política de segurança da informação é um documento formal que estabelece princípios, diretrizes, responsabilidades e regras para proteger os ativos de informação da organização.'
   },
   {
-    type: 'mc',
+    section: 'Política de Segurança da Informação',
     text: 'Quem deve seguir a política de segurança da informação de uma organização?',
-    options: [
-      'Apenas a equipe de TI',
-      'Apenas os gerentes e diretores',
-      'Todos os usuários internos e externos',
-      'Apenas os clientes da empresa'
-    ],
+    options: ['Apenas a equipe de TI','Apenas os gerentes e diretores','Todos os usuários internos e externos','Apenas os clientes da empresa'],
     correct: 2,
     explanation: 'A política de segurança deve ser seguida por todos que utilizam ou têm acesso aos recursos de informação da organização: funcionários, prestadores de serviço, parceiros e, quando aplicável, clientes.'
   },
   {
-    type: 'mc',
+    section: 'Política de Segurança da Informação',
     text: 'Qual dos itens NÃO é um objetivo da segurança da informação?',
-    options: [
-      'Confidencialidade',
-      'Integridade',
-      'Disponibilidade',
-      'Publicidade irrestrita'
-    ],
+    options: ['Confidencialidade','Integridade','Disponibilidade','Publicidade irrestrita'],
     correct: 3,
     explanation: 'Publicidade irrestrita não é um objetivo — é o oposto da confidencialidade. Os objetivos clássicos (tríade CID) são Confidencialidade, Integridade e Disponibilidade.'
   },
   {
-    type: 'mc',
+    section: 'Política de Segurança da Informação',
     text: 'A fase de definição da política de segurança da informação inclui:',
-    options: [
-      'Apenas a implementação dos controles técnicos',
-      'Planejamento, análise de riscos e definição de objetivos',
-      'Apenas a realização de auditorias',
-      'Apenas programas de treinamento'
-    ],
+    options: ['Apenas a implementação dos controles técnicos','Planejamento, análise de riscos e definição de objetivos','Apenas a realização de auditorias','Apenas programas de treinamento'],
     correct: 1,
     explanation: 'A fase de definição engloba: identificar o escopo, levantar requisitos legais e de negócio, analisar riscos e definir os objetivos e responsabilidades da política.'
   },
   {
-    type: 'mc',
+    section: 'Política de Segurança da Informação',
     text: 'Um exemplo de controle físico de segurança da informação é:',
-    options: [
-      'Firewall de rede',
-      'Restrição de acesso físico a áreas críticas',
-      'Criptografia de dados',
-      'Software antivírus'
-    ],
+    options: ['Firewall de rede','Restrição de acesso físico a áreas críticas','Criptografia de dados','Software antivírus'],
     correct: 1,
     explanation: 'Controles físicos protegem o ambiente físico onde as informações são processadas e armazenadas. Exemplos: travas, câmeras, catracas, salas-cofre e restrição de entrada a data centers.'
   },
-  // ── QUESTÕES ABERTAS ─────────────────────────────────────────
   {
-    type: 'open',
-    text: 'Explique com suas palavras a diferença entre "ameaça", "vulnerabilidade" e "risco" no contexto da segurança da informação.',
-    gabarito: `• Ameaça: qualquer agente ou evento (hacker, desastre, vírus) com potencial de causar dano a um ativo de informação.
-• Vulnerabilidade: fraqueza ou falha (em sistemas, processos ou pessoas) que pode ser explorada por uma ameaça. Ex.: senha fraca, software desatualizado.
-• Risco: combinação da probabilidade de uma ameaça explorar uma vulnerabilidade e o impacto resultante. Risco = Ameaça × Vulnerabilidade × Impacto.`
+    section: 'Política de Segurança da Informação',
+    text: 'A integridade dos dados na segurança da informação significa:',
+    options: ['Dados sempre disponíveis a qualquer usuário','Dados corretos e não alterados indevidamente','Dados de acesso público','Dados apagados após uso'],
+    correct: 1,
+    explanation: 'Integridade garante que a informação esteja completa, precisa e não tenha sido alterada de forma não autorizada, acidental ou maliciosa, preservando sua exatidão e confiabilidade.'
   },
   {
-    type: 'open',
-    text: 'Cite e explique pelo menos quatro elementos da Segurança da Informação apresentados no material.',
-    gabarito: `1. Confidencialidade — garante que a informação é acessível somente a pessoas autorizadas.
-2. Integridade — assegura que a informação não foi alterada de forma não autorizada.
-3. Disponibilidade — garante que a informação está acessível quando necessário aos usuários autorizados.
-4. Autenticidade — confirma que a identidade do autor/emissor é verdadeira.
-5. Não-repúdio — impede que o emissor negue ação realizada (ex.: envio de mensagem).
-6. Legalidade — conformidade com legislações e regulamentações vigentes.`
+    section: 'Política de Segurança da Informação',
+    text: 'A disponibilidade, como elemento da segurança da informação, refere-se a:',
+    options: ['Manter dados secretos de todos','Garantir acesso aos dados quando necessário por usuários autorizados','Excluir dados desnecessários','Fazer backup apenas em fita magnética'],
+    correct: 1,
+    explanation: 'Disponibilidade garante que a informação e os sistemas estejam acessíveis e funcionais quando os usuários autorizados precisarem deles, evitando interrupções não planejadas.'
   },
   {
-    type: 'open',
-    text: 'Descreva as quatro etapas do ciclo de Políticas de Segurança e explique a importância de cada uma.',
-    gabarito: `1. Definição — identificar o escopo, objetivos e necessidades da organização; sem isso a política não tem direção.
-2. Construção — redigir os documentos com regras, responsabilidades e procedimentos detalhados.
-3. Aprovação — validar com a alta gestão para dar legitimidade e respaldo institucional.
-4. Divulgação — comunicar a todos os colaboradores; sem divulgação a política não é seguida e perde o efeito prático.`
+    section: 'Política de Segurança da Informação',
+    text: 'A política de segurança da informação deve estar alinhada com:',
+    options: ['Apenas os requisitos técnicos de TI','A missão, visão e objetivos estratégicos da organização','Apenas os contratos com fornecedores','Apenas os usuários externos'],
+    correct: 1,
+    explanation: 'Para ser eficaz, a política de segurança deve derivar dos objetivos estratégicos da organização, refletindo sua missão, visão e valores, e não ser apenas um documento técnico isolado.'
   },
   {
-    type: 'open',
-    text: 'Por que o aumento de ambientes de rede e aplicações baseadas em rede ampliou a importância da segurança da informação? Justifique com exemplos.',
-    gabarito: `O crescimento de redes amplia a superfície de ataque: mais dispositivos conectados significam mais pontos de entrada para invasores. Exemplos: aplicações web expostas à internet podem sofrer SQL Injection ou DDoS; redes Wi-Fi abertas permitem interceptação de tráfego (sniffing); ambientes de nuvem mal configurados expõem dados sigilosos. Além disso, a interdependência dos sistemas faz com que uma falha se propague rapidamente, aumentando o impacto de qualquer incidente.`
+    section: 'Política de Segurança da Informação',
+    text: 'Qual é a importância do envolvimento da alta administração na política de segurança da informação?',
+    options: ['Não tem relevância — segurança é exclusividade de TI','Garante a eficácia e o sucesso da política ao conferir legitimidade','Apenas reduz custos operacionais','Serve apenas para cumprir exigências legais formais'],
+    correct: 1,
+    explanation: 'O apoio da alta administração é crítico: confere autoridade e recursos à política, sinaliza a cultura de segurança para toda a organização e garante que as diretrizes sejam respeitadas em todos os níveis hierárquicos.'
   },
   {
-    type: 'open',
-    text: 'Relacione pelo menos três regulamentações brasileiras vistas no material com seus principais objetivos.',
-    gabarito: `1. Lei 12.527/2011 — Lei de Acesso à Informação: garante ao cidadão o direito de solicitar informações a órgãos públicos.
-2. Lei 12.737/2012 — Lei de Crimes Cibernéticos (Lei Carolina Dieckmann): tipifica crimes como invasão de dispositivo informático, interrupção de serviço e falsificação de dados.
-3. Lei 12.965/2014 — Marco Civil da Internet: estabelece princípios, direitos e deveres no uso da internet (neutralidade de rede, privacidade, liberdade de expressão).
-4. Lei 13.709/2018 — LGPD: regula o tratamento de dados pessoais por empresas e órgãos públicos, inspirada no GDPR europeu.`
-  },
-  // ── QUESTÕES ABERTAS — LGPD ──────────────────────────────────
-  {
-    type: 'open',
-    text: 'Cite e explique pelo menos três princípios da LGPD.',
-    gabarito: `1. Necessidade — o tratamento deve ser limitado ao mínimo necessário para atingir a finalidade pretendida.
-2. Segurança — obriga a adoção de medidas técnicas e administrativas aptas a proteger os dados de acessos não autorizados e situações acidentais ou ilícitas.
-3. Transparência — garante ao titular informações claras, precisas e facilmente acessíveis sobre o tratamento e os respectivos agentes.
-4. Finalidade — o tratamento deve ser realizado para propósitos legítimos, específicos, explícitos e informados ao titular.
-5. Adequação — compatibilidade do tratamento com as finalidades informadas ao titular.`
+    section: 'Política de Segurança da Informação',
+    text: 'Qual regulamentação brasileira regula o tratamento de dados pessoais e foi inspirada no GDPR europeu?',
+    options: ['Lei 12.527/2011 — Lei de Acesso à Informação','Lei 12.737/2012 — Lei Carolina Dieckmann','Lei 12.965/2014 — Marco Civil da Internet','Lei 13.709/2018 — LGPD'],
+    correct: 3,
+    explanation: 'A Lei 13.709/2018 (LGPD — Lei Geral de Proteção de Dados) regula o tratamento de dados pessoais no Brasil por empresas e órgãos públicos, sendo amplamente inspirada no GDPR europeu.'
   },
   {
-    type: 'open',
-    text: 'Explique o que é tratamento de dados pessoais segundo a LGPD e dê dois exemplos práticos.',
-    gabarito: `Tratamento é toda operação realizada com dados pessoais: coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação, controle, modificação, comunicação, transferência, difusão ou extração.
-Exemplos:
-1. Uma loja virtual que coleta nome, e-mail e endereço de entrega do cliente para processar um pedido — isso é tratamento (coleta + uso + armazenamento).
-2. Um hospital que arquiva prontuários médicos com dados de saúde dos pacientes — tratamento de dados sensíveis, sujeito a bases legais específicas.`
+    section: 'Política de Segurança da Informação',
+    text: 'Quais são os três pilares clássicos (tríade CID) da segurança da informação?',
+    options: ['Controle, Identidade e Direitos','Confidencialidade, Integridade e Disponibilidade','Criptografia, Isolamento e Detecção','Conformidade, Incidente e Dados'],
+    correct: 1,
+    explanation: 'A tríade CID — Confidencialidade (acesso apenas para autorizados), Integridade (dados corretos e não adulterados) e Disponibilidade (acesso quando necessário) — é a base de toda política de segurança da informação.'
   },
-  {
-    type: 'open',
-    text: 'Diferencie dados pessoais de dados pessoais sensíveis, apresentando exemplos de cada categoria.',
-    gabarito: `Dados pessoais: qualquer informação que identifique ou torne identificável uma pessoa natural. Exemplos: nome, CPF, RG, endereço, e-mail, número de telefone, IP do dispositivo.
-Dados pessoais sensíveis: categoria especial que recebe proteção reforçada por revelar aspectos íntimos ou discriminatórios. Exemplos: origem racial ou étnica, convicção religiosa, opinião política, dado referente à saúde ou vida sexual, dado genético ou biométrico.
-Diferença prática: dados sensíveis exigem consentimento específico e destacado, ou outra base legal reforçada, e seu tratamento inadequado pode gerar discriminação ou danos graves ao titular.`
-  },
-  {
-    type: 'open',
-    text: 'Cite e explique três direitos do titular dos dados previstos na LGPD.',
-    gabarito: `1. Acesso — o titular pode solicitar ao controlador a confirmação de que seus dados são tratados e obter cópia deles.
-2. Correção — direito de solicitar a atualização ou retificação de dados incompletos, inexatos ou desatualizados.
-3. Eliminação — direito de pedir a exclusão dos dados tratados com base no consentimento, quando esse for revogado ou quando o tratamento for desnecessário.
-4. Portabilidade — direito de solicitar a transferência dos dados a outro fornecedor de serviço.
-5. Revogação do consentimento — o titular pode retirar o consentimento a qualquer momento, de forma gratuita e facilitada.`
-  },
-  {
-    type: 'open',
-    text: 'Como deve ser realizado o tratamento de dados de crianças e adolescentes segundo a LGPD? Justifique.',
-    gabarito: `O tratamento deve atender ao melhor interesse da criança e exige consentimento específico e em destaque de pelo menos um dos pais ou responsável legal.
-Justificativa: crianças e adolescentes são considerados vulneráveis e incapazes de compreender plenamente as implicações do tratamento de seus dados, por isso a lei exige proteção reforçada. Além disso, é vedada a coleta de dados além do estritamente necessário para a participação do menor na atividade, e o controlador não pode condicionar a participação a fornecimento de dados além do mínimo necessário.`
-  },
-  // ── QUESTÕES ABERTAS — POLÍTICA DE PRIVACIDADE ───────────────
-  {
-    type: 'open',
-    text: 'Explique o que é uma política de privacidade e qual sua importância para as organizações.',
-    gabarito: `A política de privacidade é um documento formal que descreve como a organização coleta, utiliza, armazena, compartilha e protege os dados pessoais dos titulares (clientes, colaboradores, parceiros).
-Importância:
-• Conformidade legal — atende às exigências da LGPD e outras regulamentações.
-• Transparência — informa os titulares sobre o tratamento, exercendo o princípio da transparência.
-• Confiança — aumenta a credibilidade da organização perante clientes e parceiros.
-• Governança — orienta internamente as equipes sobre como tratar dados de forma adequada.`
-  },
-  {
-    type: 'open',
-    text: 'Cite ações importantes para implementar uma política de privacidade dentro de uma organização.',
-    gabarito: `1. Mapeamento de dados (Data Mapping) — identificar quais dados são coletados, onde são armazenados e como fluem.
-2. Designação de DPO (Encarregado de Proteção de Dados) — responsável por ser o canal entre a organização, titulares e a ANPD.
-3. Treinamento e conscientização — capacitar colaboradores sobre boas práticas de privacidade.
-4. Revisão de contratos — incluir cláusulas de proteção de dados com operadores e parceiros.
-5. Auditorias periódicas — verificar a conformidade da política com a legislação vigente e os processos internos.
-6. Alinhamento com TI — implementar controles técnicos (criptografia, controle de acesso, anonimização) que suportem a política.`
-  },
-  // ── QUESTÕES ABERTAS — POLÍTICA DE SEGURANÇA DA INFORMAÇÃO ───
-  {
-    type: 'open',
-    text: 'Explique o que é uma política de segurança da informação e sua importância para as organizações.',
-    gabarito: `É um conjunto formal de diretrizes, princípios, regras e responsabilidades que orientam a proteção dos ativos de informação de uma organização contra ameaças internas e externas.
-Importância:
-• Define claramente as responsabilidades de cada colaborador quanto à segurança.
-• Reduz riscos ao estabelecer controles preventivos e corretivos.
-• Garante conformidade com leis e regulamentações (LGPD, ISO 27001, etc.).
-• Protege a imagem e a continuidade do negócio diante de incidentes.`
-  },
-  {
-    type: 'open',
-    text: 'Descreva as etapas principais para criação de uma política de segurança da informação.',
-    gabarito: `1. Definição — identificar escopo, objetivos, análise de riscos e requisitos legais e de negócio.
-2. Construção — redigir os documentos com regras, responsabilidades, procedimentos e controles detalhados.
-3. Aprovação — validar com a alta gestão para conferir legitimidade e respaldo institucional.
-4. Divulgação — comunicar a todos os colaboradores e partes interessadas; sem divulgação a política não é eficaz.
-Ciclo contínuo: após a divulgação, a política deve ser monitorada, auditada e atualizada periodicamente para acompanhar mudanças no negócio e no cenário de ameaças.`
-  }
 ];
 
-let answered = {};
+// ─── Estado ──────────────────────────────────────────────────
+let shuffleQuestions = false;
+let shuffleAnswers   = false;
+let activeQuestions  = [];
+let answered         = {};
+
+function toggleShuffle(type) {
+  if (type === 'q') {
+    shuffleQuestions = !shuffleQuestions;
+    document.getElementById('btn-shuffle-q').classList.toggle('active', shuffleQuestions);
+  } else {
+    shuffleAnswers = !shuffleAnswers;
+    document.getElementById('btn-shuffle-a').classList.toggle('active', shuffleAnswers);
+  }
+  resetQuiz();
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildActiveQuestions() {
+  const qs = shuffleQuestions ? shuffle(allQuestions) : [...allQuestions];
+  activeQuestions = qs.map(q => {
+    if (shuffleAnswers) {
+      const indexed = q.options.map((opt, i) => ({ opt, isCorrect: i === q.correct }));
+      const shuffled = shuffle(indexed);
+      return { q, shuffledOpts: shuffled.map(x => x.opt), correctShuffledIdx: shuffled.findIndex(x => x.isCorrect) };
+    }
+    return { q, shuffledOpts: q.options, correctShuffledIdx: q.correct };
+  });
+}
 
 function buildQuiz() {
+  buildActiveQuestions();
+  answered = {};
+
+  const total = activeQuestions.length;
+  document.getElementById('stat-total').textContent    = total;
+  document.getElementById('stat-answered').textContent = '0';
+  document.getElementById('stat-correct').textContent  = '0';
+  document.getElementById('stat-wrong').textContent    = '0';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('score-panel').classList.remove('show');
+
   const wrap = document.getElementById('questions-wrap');
   wrap.innerHTML = '';
 
-  // separate sections
-  const mc = questions.filter(q => q.type === 'mc');
-  const open = questions.filter(q => q.type === 'open');
+  // Group by section preserving order of first appearance
+  const sections = [];
+  const sectionMap = {};
+  activeQuestions.forEach((item, idx) => {
+    const sec = item.q.section;
+    if (!sectionMap[sec]) { sectionMap[sec] = []; sections.push(sec); }
+    sectionMap[sec].push(idx);
+  });
 
-  function renderSection(list, labelText, offset) {
+  let sNum = 1;
+  sections.forEach(sec => {
     const lbl = document.createElement('div');
     lbl.className = 'section-label';
-    lbl.textContent = labelText;
+    lbl.textContent = `${String(sNum).padStart(2,'0')} — ${sec}`;
     wrap.appendChild(lbl);
+    sNum++;
 
-    list.forEach((q, i) => {
-      const idx = offset + i;
+    sectionMap[sec].forEach(idx => {
+      const { q, shuffledOpts } = activeQuestions[idx];
+      const letters = ['A','B','C','D'];
+
       const card = document.createElement('div');
       card.className = 'question-card';
       card.setAttribute('data-num', idx + 1);
       card.id = `q${idx}`;
 
-      const typeBadge = `<div class="q-type ${q.type === 'mc' ? 'multiple' : 'open'}">${q.type === 'mc' ? '// múltipla escolha' : '// questão aberta'}</div>`;
-      const qText = `<div class="q-text"><strong>Q${idx + 1}.</strong> ${q.text}</div>`;
+      const opts = shuffledOpts.map((opt, oi) =>
+        `<button class="option" onclick="selectOption(${idx},${oi})" id="opt_${idx}_${oi}">
+          <span class="letter">${letters[oi]}</span>
+          <span>${opt}</span>
+        </button>`
+      ).join('');
 
-      let body = '';
-      if (q.type === 'mc') {
-        const opts = q.options.map((opt, oi) => {
-          const letters = ['A','B','C','D'];
-          return `<button class="option" onclick="selectOption(${idx}, ${oi})" id="opt_${idx}_${oi}">
-            <span class="letter">${letters[oi]}</span>
-            <span>${opt}</span>
-          </button>`;
-        }).join('');
-        body = `<div class="options" id="opts_${idx}">${opts}</div>
-                <div class="feedback" id="fb_${idx}"></div>`;
-      } else {
-        body = `<textarea class="open-textarea" id="oa_${idx}" placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="btn-check-open" onclick="checkOpen(${idx})">Ver gabarito</button>
-                <div class="feedback open-fb" id="fb_${idx}"></div>`;
-      }
+      card.innerHTML = `<div class="q-type multiple">// múltipla escolha</div>
+        <div class="q-text"><strong>Q${idx + 1}.</strong> ${q.text}</div>
+        <div class="options" id="opts_${idx}">${opts}</div>
+        <div class="feedback" id="fb_${idx}"></div>`;
 
-      card.innerHTML = typeBadge + qText + body;
       wrap.appendChild(card);
     });
-  }
-
-  renderSection(mc, '01 — Múltipla Escolha (Fundamentos + LGPD + Privacidade + Pol. Segurança)', 0);
-  renderSection(open, '02 — Questões Abertas', mc.length);
+  });
 }
 
 function selectOption(qIdx, optIdx) {
   if (answered[qIdx] !== undefined) return;
-  const q = questions[qIdx];
+  const { q, correctShuffledIdx } = activeQuestions[qIdx];
   const card = document.getElementById(`q${qIdx}`);
-  const fb = document.getElementById(`fb_${qIdx}`);
+  const fb   = document.getElementById(`fb_${qIdx}`);
   const opts = card.querySelectorAll('.option');
 
   opts.forEach(o => o.disabled = true);
   opts[optIdx].classList.add('selected');
-  opts[q.correct].classList.add('correct-opt');
+  opts[correctShuffledIdx].classList.add('correct-opt');
 
-  answered[qIdx] = (optIdx === q.correct);
+  const isCorrect = optIdx === correctShuffledIdx;
+  answered[qIdx] = isCorrect;
 
-  if (optIdx === q.correct) {
+  if (isCorrect) {
     card.classList.add('correct');
     fb.className = 'feedback correct-fb show';
     fb.innerHTML = `<strong>✓ Correto!</strong>${q.explanation}`;
-    if (optIdx !== q.correct) opts[optIdx].classList.add('wrong-opt');
   } else {
     opts[optIdx].classList.add('wrong-opt');
     card.classList.add('wrong');
@@ -984,60 +887,39 @@ function selectOption(qIdx, optIdx) {
   updateProgress();
 }
 
-function checkOpen(qIdx) {
-  const q = questions[qIdx];
-  const card = document.getElementById(`q${qIdx}`);
-  const ta = document.getElementById(`oa_${qIdx}`);
-  const fb = document.getElementById(`fb_${qIdx}`);
-  const btn = card.querySelector('.btn-check-open');
-
-  answered[qIdx] = true;
-  btn.disabled = true;
-  btn.style.opacity = '0.5';
-  card.classList.add('open-answered');
-
-  fb.className = 'feedback open-fb show';
-  fb.innerHTML = `<strong>📋 Gabarito esperado:</strong><pre style="white-space:pre-wrap;font-size:13px;font-family:'IBM Plex Mono',monospace;line-height:1.7;margin-top:4px">${q.gabarito}</pre>`;
-
-  updateProgress();
-}
-
 function updateProgress() {
-  const total = questions.length;
-  const done = Object.keys(answered).length;
+  const done    = Object.keys(answered).length;
+  const correct = Object.values(answered).filter(v => v === true).length;
+  const wrong   = done - correct;
   document.getElementById('stat-answered').textContent = done;
-  document.getElementById('progress-fill').style.width = (done / total * 100) + '%';
+  document.getElementById('stat-correct').textContent  = correct;
+  document.getElementById('stat-wrong').textContent    = wrong;
+  document.getElementById('progress-fill').style.width = (done / activeQuestions.length * 100) + '%';
 }
 
 function submitAll() {
-  const mcTotal = questions.filter(q => q.type === 'mc').length;
-  const mcCorrect = questions
-    .map((q, i) => q.type === 'mc' ? answered[i] : null)
-    .filter(v => v === true).length;
+  const total   = activeQuestions.length;
+  const correct = Object.values(answered).filter(v => v === true).length;
+  const pct     = Math.round((correct / total) * 100);
 
-  const pct = Math.round((mcCorrect / mcTotal) * 100);
-
-  const panel = document.getElementById('score-panel');
   const circle = document.getElementById('score-circle');
-  const title = document.getElementById('score-title');
-  const desc = document.getElementById('score-desc');
+  const title  = document.getElementById('score-title');
+  const desc   = document.getElementById('score-desc');
+  const panel  = document.getElementById('score-panel');
 
   circle.textContent = pct + '%';
   if (pct >= 70) {
-    circle.style.color = 'var(--correct)';
-    circle.style.borderColor = 'var(--correct)';
+    circle.style.color = circle.style.borderColor = 'var(--correct)';
     title.textContent = '🎉 Bom desempenho!';
-    desc.textContent = `Você acertou ${mcCorrect} de ${mcTotal} questões de múltipla escolha (${pct}%). Revise as abertas com atenção!`;
+    desc.textContent  = `Você acertou ${correct} de ${total} questões (${pct}%). Continue assim!`;
   } else if (pct >= 50) {
-    circle.style.color = 'var(--warn)';
-    circle.style.borderColor = 'var(--warn)';
+    circle.style.color = circle.style.borderColor = 'var(--warn)';
     title.textContent = '⚠️ Precisa melhorar';
-    desc.textContent = `Você acertou ${mcCorrect} de ${mcTotal} questões objetivas (${pct}%). Revise os fundamentos e tente novamente.`;
+    desc.textContent  = `Você acertou ${correct} de ${total} questões (${pct}%). Revise os fundamentos e tente novamente.`;
   } else {
-    circle.style.color = 'var(--wrong)';
-    circle.style.borderColor = 'var(--wrong)';
+    circle.style.color = circle.style.borderColor = 'var(--wrong)';
     title.textContent = '📚 Continue estudando!';
-    desc.textContent = `Você acertou apenas ${mcCorrect} de ${mcTotal} questões objetivas (${pct}%). Releia o material e refaça o simulado.`;
+    desc.textContent  = `Você acertou apenas ${correct} de ${total} questões (${pct}%). Releia o material e refaça o simulado.`;
   }
 
   panel.classList.add('show');
@@ -1045,9 +927,6 @@ function submitAll() {
 }
 
 function resetQuiz() {
-  answered = {};
-  document.getElementById('stat-answered').textContent = '0';
-  document.getElementById('progress-fill').style.width = '0%';
   document.getElementById('score-panel').classList.remove('show');
   buildQuiz();
   window.scrollTo({ top: 0, behavior: 'smooth' });
